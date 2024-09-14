@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question Form</title>
+</head>
+<body>
+    <form id="loginForm">
+        <label for="input">Login:</label>
+        <input type="text" id="input" name="login">
+        <br>
+        <label for="passwordinput">Password:</label>
+        <input type="password" id="passwordinput" name="password">
+        <br>
+        <button type="submit">Login</button>
+    </form>
+
+    <button id="addQuestionsBtn">Add Questions</button>
+    <p id="questionDisplay"></p>
+
+    <script>
+        let users = [
+            { name: "jaloliddin", login: 'jonka12', parol: 170 },
+            { name: "emir", login: 'user12', parol: 170 },
+            { name: "salohiddin", login: 'saloh9090', parol: 170 },
+        ];
+
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            let logininput = document.getElementById('input').value;
+            let passwordinput = Number(document.getElementById('passwordinput').value);
+
+            let userFound = false;
+
+            for (let i = 0; i < users.length; i++) {
+                let user = users[i];
+                if (user.login === logininput && user.parol === passwordinput) {
+                    alert(`Salom ${user.name}`);
+                    userFound = true;
+                    break;
+                }
+            }
+
+            if (!userFound) {
+                alert('Login yoki parol xato');
+            }
+        });
+
+        document.getElementById('addQuestionsBtn').addEventListener('click', function() {
+            let question = prompt('Savol kiriting:');
+            if (question) {
+                document.getElementById('questionDisplay').innerText = question;
+            } else {
+                document.getElementById('questionDisplay').innerText = 'Savol kiritilmadi';
+            }
+        });
+    </script>
+</body>
+</html>
